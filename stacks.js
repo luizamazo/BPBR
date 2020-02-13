@@ -92,27 +92,6 @@ const getMediaType = (mediaPath) => {
   return mediaType
 }
 
-let postMedia = async (mediaPath, mediaType) => {
-   
-  let mediaData = fs.readFileSync(mediaPath, {encoding:'base64'}),
-      mediaSize = fs.statSync(mediaPath).size,
-      mediaId = ''
-
-      await twitter.initUpload(mediaSize, mediaType) 
-        .then(async res => {
-          await twitter.appendUpload(res, mediaData).then(async res2 => {
-            await twitter.finalizeUpload(res2).then(res3 => {
-              mediaId = res3
-            })
-          })
-        }).catch(err => {
-          console.log(err)
-        })
-        console.log('mediaID', mediaId)
-        return mediaId
-  }
-
-
 let postTweet = async (status, in_reply_to_status_id = null, media_ids = null)=> {
   let username = '@corongabot'
   console.log('inferno', in_reply_to_status_id)
