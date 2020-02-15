@@ -84,7 +84,7 @@ let master = async (media) => {
               tweet_id = res
             })
         }else{
-          console.log('the pics belongs to a thread)
+          console.log('the pics belongs to a thread')
           await postTweet(tweet, tweet_id, mediaIdStrings)
             .then(res => {
               tweet_id = res
